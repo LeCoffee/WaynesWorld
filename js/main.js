@@ -2,9 +2,9 @@
 var canvasElement = document.querySelector('canvas');
 
 var canvas = {
-  element: canvasElement,
-  context: canvasElement.getContext('2d'),
-  backgroundStyle: "#000",
+  element:          canvasElement,
+  context:          canvasElement.getContext('2d'),
+  backgroundStyle:  "#000",
 };
 
 // Load images
@@ -19,7 +19,7 @@ delphiLogo.src = '/img/delphi.png';
 
 // We want several delphi logo's.
 var delphiLogos = [];
-for(var i =0; i<5; i++){
+for(var i =0; i < 5; i++){
   delphiLogos.push({
     scale:  Math.random()*100, 
     y:      Math.random()*canvas.element.clientHeight-1000, 
@@ -37,7 +37,9 @@ miracle.addEventListener('ended', function() {
 
 miracle.play();
 
-var mouse = { clientOffset: {} };
+var mouse = { 
+  clientOffset: {} 
+};
 
 onscroll = function() {
   canvas.clientRect    = canvas.element.getClientRects()[0];
@@ -84,14 +86,14 @@ function increaseWayne() {
 }
 
 var waynesAdded = 0;
-var lastWayne = 0;
+var lastWayne   = 0;
 
 function raiseWayne() {
-  if(wayneObject.y < (canvas.element.height / 2) +800){
+  if(wayneObject.y < (canvas.element.height / 2) + 800){
     stageFunc = increaseWayne;
   }
 
-  wayneObject.y-=1;
+  wayneObject.y -= 1;
 
   if(lastWayne == 0 && waynesAdded < 100){
     delphiLogos.push({
@@ -130,15 +132,15 @@ requestAnimationFrame(loop = function(){
   ctx.translate(origin.x, origin.y);
 
   ctx.save();
-  ctx.rotate(currentRot * wayneObject.scale *1.2);
+  ctx.rotate(currentRot * wayneObject.scale * 1.2);
   
   if(width < height) {
     ctx.drawImage(
       burst,
-      -origin.y*1.5,
-      -origin.y*1.5,
-      height*1.5,
-      height*1.5
+      -origin.y * 1.5,
+      -origin.y * 1.5,
+      height * 1.5,
+      height * 1.5
     );  
   } else{
     ctx.drawImage(
@@ -159,7 +161,7 @@ requestAnimationFrame(loop = function(){
     ctx.drawImage(
       delphiLogo,
       -origin.x + delphiLogos[i].x + Math.sin((delphiLogos[i].y * height) / 100000) * 100,
-      -origin.y + (delphiLogos[i].y % (canvas.element.height+(600)) -500),
+      -origin.y + (delphiLogos[i].y % (canvas.element.height + height)) - 500,
       delphiLogos[i].scale,
       delphiLogos[i].scale
     );
@@ -167,10 +169,10 @@ requestAnimationFrame(loop = function(){
 
   ctx.drawImage(
     wayne, 
-    -((500*wayneObject.scale)/2),
-    wayneObject.y-((700*wayneObject.scale))-700,
-    500*wayneObject.scale,
-    700*wayneObject.scale
+    -((500 * wayneObject.scale) / 2),
+    wayneObject.y - (700 * wayneObject.scale) - 700,
+    500 * wayneObject.scale,
+    700 * wayneObject.scale
   );
 
   stageFunc();
