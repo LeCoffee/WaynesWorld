@@ -21,8 +21,8 @@ delphiLogo.src = '/img/delphi.png';
 var delphiLogos = [];
 for(var i =0; i < 5; i++){
   delphiLogos.push({
-    scale:  Math.random()*100, 
-    y:      Math.random()*canvas.element.clientHeight-1000, 
+    scale:  Math.random()*100,
+    y:      Math.random()*canvas.element.clientHeight-1000,
     x:      Math.random()*canvas.element.clientWidth
   });
 }
@@ -37,8 +37,8 @@ miracle.addEventListener('ended', function() {
 
 miracle.play();
 
-var mouse = { 
-  clientOffset: {} 
+var mouse = {
+  clientOffset: {}
 };
 
 onscroll = function() {
@@ -77,7 +77,7 @@ var wayneObject = {
   x:     -250,
   y:     canvas.element.clientHeight*2,
   scale: 0
-} 
+}
 
 function increaseWayne() {
   if(wayneObject.scale < 1.25){
@@ -133,7 +133,7 @@ requestAnimationFrame(loop = function(){
 
   ctx.save();
   ctx.rotate(currentRot * wayneObject.scale * 1.2);
-  
+
   if(width < height) {
     ctx.drawImage(
       burst,
@@ -141,7 +141,7 @@ requestAnimationFrame(loop = function(){
       -origin.y * 1.5,
       height * 1.5,
       height * 1.5
-    );  
+    );
   } else{
     ctx.drawImage(
       burst,
@@ -151,24 +151,26 @@ requestAnimationFrame(loop = function(){
       width*1.5
     );
   }
-    
+
   currentRot = currentRot + 0.005;
   ctx.restore();
-  
+
   for(var i=0; i < delphiLogos.length; i++) {
     delphiLogos[i].y += 0.05 * delphiLogos[i].scale;
-
+    // Move the delphi logo's
     ctx.drawImage(
       delphiLogo,
+
       -origin.x + delphiLogos[i].x + Math.sin((delphiLogos[i].y * height) / 100000) * 100,
-      -origin.y + (delphiLogos[i].y % (canvas.element.height + height)) - 500,
+      -origin.y + (delphiLogos[i].y % (height + 600)) - 500,
+
       delphiLogos[i].scale,
       delphiLogos[i].scale
     );
   }
 
   ctx.drawImage(
-    wayne, 
+    wayne,
     -((500 * wayneObject.scale) / 2),
     wayneObject.y - (700 * wayneObject.scale) - 700,
     500 * wayneObject.scale,
